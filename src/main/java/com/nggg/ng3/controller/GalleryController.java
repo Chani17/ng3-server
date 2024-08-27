@@ -25,4 +25,10 @@ public class GalleryController {
 	public List<GalleryDTO> getImages(String email) {
 		return galleryService.getImages(email);
 	}
+
+	@PostMapping("/likes")
+	public ResponseEntity likes(@RequestBody LikeDTO likeDTO) {
+		galleryService.likes(likeDTO.getEmail(), likeDTO.getImageId());
+		return ResponseEntity.status(HttpStatus.CREATED).build();
+	}
 }
