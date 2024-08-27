@@ -1,6 +1,5 @@
 package com.nggg.ng3.entity;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,21 +14,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@Builder(toBuilder = true)
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder(toBuilder = true)
 @Entity
-@Table(name = "WORDS")
-public class Word {
+@Table(name = "AVATAR_COMPONENTS")
+public class AvatarComponent {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false)
-    private String content;
+	@Column(nullable = false)
+	private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "THEME_ID", nullable = false)
-    private Theme theme;
+	@Column(nullable = false)
+	private String imageUrl;
+
+	@ManyToOne
+	@JoinColumn(name = "AVATAR_COMPONENT_CATEGORY_ID", nullable = false)
+	private AvatarComponentCategory avatarComponentCategory;
 }
