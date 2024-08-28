@@ -1,12 +1,14 @@
 package com.nggg.ng3.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Getter
-@Setter
-//@Builder
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResponseRoomCheckDTO {
@@ -16,8 +18,7 @@ public class ResponseRoomCheckDTO {
     private String responseMessage;
 
     @Getter
-//    @Builder
-    @Setter
+    @Builder
     @AllArgsConstructor
     @NoArgsConstructor
     public static class UserDTO {

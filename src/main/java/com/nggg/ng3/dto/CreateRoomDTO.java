@@ -1,9 +1,9 @@
 package com.nggg.ng3.dto;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
 
 @Getter
-@Setter
 @Builder
 public class CreateRoomDTO {
     private String userId;

@@ -1,16 +1,22 @@
 package com.nggg.ng3.controller;
 
-import com.nggg.ng3.dto.*;
+import com.nggg.ng3.dto.CreateRoomDTO;
+import com.nggg.ng3.dto.RequestRoomCheckDTO;
+import com.nggg.ng3.dto.ResponseRoomCheckDTO;
+import com.nggg.ng3.dto.RoomListDTO;
 import com.nggg.ng3.entity.Room;
 import com.nggg.ng3.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import static com.nggg.ng3.exception.CustomExceptions.*;
 
 
 @RestController
