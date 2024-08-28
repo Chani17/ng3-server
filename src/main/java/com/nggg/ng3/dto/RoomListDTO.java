@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoomDTO {
+public class RoomListDTO {
     private Long id;
     private String title;
     private String password;

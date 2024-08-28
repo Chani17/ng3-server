@@ -1,14 +1,17 @@
 package com.nggg.ng3.controller;
 
-import com.nggg.ng3.dto.RoomDTO;
+import com.nggg.ng3.dto.*;
+import com.nggg.ng3.entity.Room;
 import com.nggg.ng3.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import static com.nggg.ng3.exception.CustomExceptions.*;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -19,9 +22,26 @@ public class RoomController {
 
     // 방 목록 가져오기
     @GetMapping("/room")
-    public List<RoomDTO> getRooms() {
+    public List<RoomListDTO> getRooms() {
         return roomService.getAllRooms();
     }
 
+    // 방 생성하기
+    @PostMapping("/room")
+    public ResponseEntity<Map<String, Long>> createRoom(@RequestBody CreateRoomDTO createRoomDTO) {
+        Room createdRoom = roomService.saveRoom(createRoomDTO);
 
+        // 방 ID를 반환할 데이터 준비
+        Map<String, Long> response = new HashMap<>();
+        response.put("roomId", createdRoom.getId());
+
+        return ResponseEntity.ok(response);
+    }
+
+    // 방 입장 검증
+    @PostMapping("/room/enter")
+    public ResponseEntity<Object> enterRoomCheck(@RequestBody RequestRoomCheckDTO requestRoomCheckDTO) {
+        ResponseRoomCheckDTO responseRoomCheckDTO = roomService.enterRoomCheck(requestRoomCheckDTO);
+        return ResponseEntity.ok(responseRoomCheckDTO);
+    }
 }
