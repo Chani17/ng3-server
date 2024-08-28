@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class WearingId implements Serializable {
 
 	@Column(nullable = false)
-	private Long avatarId;
+	private String userId;
 
 	@Column(nullable = false)
 	private Long avatarComponentId;

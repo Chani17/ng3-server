@@ -25,9 +25,6 @@ public class User extends BaseEntity {
     @Column(name = "ID", nullable = false)
     private String email;
 
-    @Column(nullable = false)
-    private String name;
-
     private String profile_image;
 
     @Column(nullable = false)
