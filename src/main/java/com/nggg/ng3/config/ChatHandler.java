@@ -38,7 +38,6 @@ public class ChatHandler extends TextWebSocketHandler {
 		String roomIdStr = query != null && query.startsWith("roomId=") ? query.split("=")[1] : null;
 		System.out.println("Room ID: " + roomIdStr);
 
-
 		if (roomIdStr != null) {
 			// 문자열로부터 long 타입의 방 ID를 parsing
 			long roomId = Long.parseLong(roomIdStr);
@@ -48,6 +47,7 @@ public class ChatHandler extends TextWebSocketHandler {
 			session.getAttributes().put("roomId", roomIdStr);
 			// 방 ID에 대한 session 집합을 가져오거나 새로 생성한 후, 현재 session을 추가
 			rooms.computeIfAbsent(roomId, k -> Collections.newSetFromMap(new ConcurrentHashMap<>())).add(session);
+			notifyRoomAboutUserChange(roomId, "joined", "System");
 		}
 	}
 
@@ -105,8 +105,20 @@ public class ChatHandler extends TextWebSocketHandler {
 				// 방의 session 집합이 비어있으면 방 삭제
 				if (roomSessions.isEmpty()) {
 					rooms.remove(roomId);
+				} else {
+					notifyRoomAboutUserChange(roomId, "left", "System");
 				}
 			}
 		}
+	}
+
+	// Notify room members about user joining or leaving
+	private void notifyRoomAboutUserChange(long roomId, String action, String systemSender) throws IOException {
+		Chat chat = new Chat();
+		chat.setSender(systemSender);
+		chat.setMessage("A user has " + action + " the room.");
+		chat.setTimestamp(LocalDateTime.now());
+
+		sendMessageToRoom(roomId, chat);
 	}
 }
