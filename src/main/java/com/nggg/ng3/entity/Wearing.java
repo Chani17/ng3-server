@@ -25,9 +25,9 @@ public class Wearing {
 	private WearingId id;
 
 	@ManyToOne
-	@MapsId("avatarId")
-	@JoinColumn(name = "AVATAR_ID", nullable = false)
-	private Avatar avatar;
+	@MapsId("userId")
+	@JoinColumn(name = "USER_ID", nullable = false)
+	private User userId;
 
 	@ManyToOne
 	@MapsId("avatarComponentId")
