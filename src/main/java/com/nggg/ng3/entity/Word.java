@@ -18,8 +18,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "WORDS")
 public class Word {
