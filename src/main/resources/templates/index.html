@@ -80,10 +80,11 @@
 <script>
     let socket;
     let roomId = 1; // 사용할 방 ID (테스트 용도로 1로 설정)
+    let client =
 
     function connect() {
         // WebSocket 객체 생성
-        socket = new WebSocket(`ws://localhost:8080/chat?roomId=${roomId}`);
+        socket = new WebSocket(`ws://192.168.210.88:8080/chat?roomId=${roomId}`);
 
         socket.onopen = function(event) {
             // 연결이 열렸다면 호출
@@ -122,8 +123,9 @@
         let messageInput = document.getElementById('messageInput');
         let message = messageInput.value;
         if (message && socket) {
+            // 서버에 보낼 chat object 생성
             let chat = {
-                sender: 'User',
+                sender: client,
                 message: message
             };
 
@@ -132,7 +134,8 @@
             let newMessage = document.createElement('div');
 
             // CHECK❗️
-            newMessage.classList.add('message', 'you'); // Add 'you' class for styling
+            // 'you' 클래스를 추가하여 스타일링
+            newMessage.classList.add('message', 'you');
 
             newMessage.textContent = `You: ${message}`;
             messageBox.appendChild(newMessage);
@@ -140,7 +143,7 @@
             // CHECK❗️
             messageBox.scrollTop = messageBox.scrollHeight;
 
-            // Send the message to the server
+            // 서버로 메세지 전송
             socket.send(JSON.stringify(chat));
             messageInput.value = '';
         }
