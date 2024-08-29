@@ -32,6 +32,7 @@ public class GalleryService {
 			.orElseThrow(() -> new IllegalStateException("회원정보를 확인해주세요."));
 
 		List<GalleryDTO> imageList = imageRepository.findImageLikesByUserId(user.getEmail());
+
 		for(GalleryDTO dto : imageList) {
 			System.out.println("title = " + dto.getTitle());
 			System.out.println("likeCount = " + dto.getLikeCount());
@@ -41,7 +42,9 @@ public class GalleryService {
 		return imageList;
 	}
 
-	public Long likes(String email, Long imageId) {
+
+	public void likes(String email, Long imageId) {
+
 		User user = userRepository.findById(email)
 			.orElseThrow(() -> new IllegalStateException("회원정보를 확인해주세요."));
 
@@ -59,8 +62,7 @@ public class GalleryService {
 
 			likeRepository.save(like);
 		}
-		return getLikeCount(imageId);
-	}
+  }
 
 	public Long notlikes(String email, Long imageId) {
 		LikeId likeId = new LikeId(email, imageId);
@@ -81,5 +83,13 @@ public class GalleryService {
 		Image image = imageRepository.findById(imageId)
 				.orElseThrow(() -> new IllegalStateException("존재하지 않는 이미지입니다."));
 		return likeRepository.existsByUserAndImage(user, image);
+
+		Like like = Like.builder()
+			.id(likeId)
+			.user(user)
+			.image(image)
+			.build();
+
+		likeRepository.save(like);
 	}
 }

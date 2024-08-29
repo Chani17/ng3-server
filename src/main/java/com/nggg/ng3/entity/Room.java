@@ -36,6 +36,6 @@ public class Room extends BaseEntity {
     private GameState state;
 
     @ManyToOne
-    @JoinColumn(name = "THEME_ID", nullable = false)
+    @JoinColumn(name = "THEME_ID")
     private Theme theme;
 }
