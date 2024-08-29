@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class GalleryController {
 
 	private final GalleryService galleryService;
@@ -29,10 +32,17 @@ public class GalleryController {
 	}
 
 	@PostMapping("/{imageId}/likes")
-	public Long likes(@PathVariable("imageId") Long imageId, @RequestParam String userId) {
-		System.out.println("userId = " + userId);
-		Long likeCount = galleryService.likes(userId, imageId);
-		System.out.println("likeCount = " + likeCount);
-		return likeCount;
+	public Long addLike(@PathVariable("imageId") Long imageId, @RequestParam String userId) {
+		return galleryService.likes(userId, imageId);
+	}
+
+	@DeleteMapping("/{imageId}/likes")
+	public Long removeLike(@PathVariable("imageId") Long imageId, @RequestParam String userId) {
+		return galleryService.notlikes(userId, imageId);
+	}
+
+	@GetMapping("/{userId}/images/{imageId}/liked")
+	public boolean isLiked(@PathVariable("userId") String userId, @PathVariable("imageId") Long imageId) {
+		return galleryService.isLikedByUser(userId, imageId);
 	}
 }
