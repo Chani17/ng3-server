@@ -8,6 +8,7 @@ import com.nggg.ng3.repository.LikeRepository;
 import com.nggg.ng3.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +38,7 @@ public class FollowService {
     }
 
     // 팔로우
+    @Transactional
     public void follow(String userEmail, String followingEmail) {
         if (isFollowing(userEmail, followingEmail)) {
             throw new IllegalStateException("이미 팔로우 중입니다.");
@@ -53,6 +55,7 @@ public class FollowService {
     }
 
     // 언팔로우
+    @Transactional
     public void unfollow(String userEmail, String followingEmail) {
         if (!isFollowing(userEmail, followingEmail)) {
             throw new IllegalStateException("팔로우되어 있지 않습니다.");
