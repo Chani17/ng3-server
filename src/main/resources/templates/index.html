@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #messages {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .message.you {
+            background-color: #d1e7dd; /* Light green for your messages */
+            text-align: right;
+        }
+
+        .message.other {
+            background-color: #f8d7da; /* Light red for others' messages */
+            text-align: left;
+        }
+
+        #messageInput {
+            width: calc(100% - 100px);
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #sendButton, #disconnectButton {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #sendButton {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #disconnectButton {
+            background-color: #f44336;
+            color: white;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>WebSocket Chat</h1>
+
+<div id="messages"></div>
+
+<input id="messageInput" type="text" placeholder="Type a message" />
+<button id="sendButton">Send</button>
+<button id="disconnectButton">Disconnect</button>
+
+<script>
+    let socket;
+    let roomId = 1; // 사용할 방 ID (테스트 용도로 1로 설정)
+    let client =
+
+    function connect() {
+        // WebSocket 객체 생성
+        socket = new WebSocket(`ws://192.168.210.88:8080/chat?roomId=${roomId}`);
+
+        socket.onopen = function(event) {
+            // 연결이 열렸다면 호출
+            console.log('WebSocket connection opened');
+        };
+
+        socket.onmessage = function(event) {
+            // 서버로부터 받은 메세지 데이터(JSON 형식)를 파싱하여 chat 객체로 변환
+            let chat = JSON.parse(event.data);
+            let messageBox = document.getElementById('messages');
+            let newMessage = document.createElement('div');
+
+            // CHECK❗️
+            newMessage.classList.add('message', 'other');
+
+            newMessage.textContent = `[${chat.timestamp}] ${chat.sender}: ${chat.message}`;
+            messageBox.appendChild(newMessage);
+
+            // CHECK❗️
+            // 메시지 박스의 스크롤을 가장 하단으로 이동
+            messageBox.scrollTop = messageBox.scrollHeight;
+        };
+
+        socket.onclose = function(event) {
+            // WebSocket 연결이 종료되었을 때 호출
+            console.log('WebSocket connection closed');
+        };
+
+        socket.onerror = function(error) {
+            // WebSocket 오류가 발생했을 떄 호출
+            console.error('WebSocket error:', error);
+        };
+    }
+
+    function sendMessage() {
+        let messageInput = document.getElementById('messageInput');
+        let message = messageInput.value;
+        if (message && socket) {
+            // 서버에 보낼 chat object 생성
+            let chat = {
+                sender: client,
+                message: message
+            };
+
+            // 사용자 메세지를 화면에 표시
+            let messageBox = document.getElementById('messages');
+            let newMessage = document.createElement('div');
+
+            // CHECK❗️
+            // 'you' 클래스를 추가하여 스타일링
+            newMessage.classList.add('message', 'you');
+
+            newMessage.textContent = `You: ${message}`;
+            messageBox.appendChild(newMessage);
+
+            // CHECK❗️
+            messageBox.scrollTop = messageBox.scrollHeight;
+
+            // 서버로 메세지 전송
+            socket.send(JSON.stringify(chat));
+            messageInput.value = '';
+        }
+    }
+
+    function disconnect() {
+        if (socket) {
+            // WebSocket 연결 종료
+            socket.close();
+        }
+    }
+
+    window.onload = function() {
+        // 페이지가 로드 되면 WebSocket 연결 설정
+        connect();
+
+        document.getElementById('sendButton').addEventListener('click', sendMessage);
+        document.getElementById('disconnectButton').addEventListener('click', disconnect);
+    };
+</script>
+</body>
+</html>
