@@ -9,5 +9,4 @@ public class LikeDTO {
 
 	private String email;
 
-	private Long imageId;
 }

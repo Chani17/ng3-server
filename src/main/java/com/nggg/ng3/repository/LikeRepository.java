@@ -6,4 +6,5 @@ import com.nggg.ng3.entity.Like;
 import com.nggg.ng3.entity.LikeId;
 
 public interface LikeRepository extends JpaRepository<Like, LikeId> {
+	Long countByImageId(Long imageId);
 }
