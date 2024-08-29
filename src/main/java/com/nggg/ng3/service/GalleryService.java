@@ -33,10 +33,18 @@ public class GalleryService {
 
 		List<GalleryDTO> imageList = imageRepository.findImageLikesByUserId(user.getEmail());
 
+		for(GalleryDTO dto : imageList) {
+			System.out.println("title = " + dto.getTitle());
+			System.out.println("likeCount = " + dto.getLikeCount());
+			System.out.println("url = " + dto.getUrl());
+		}
+
 		return imageList;
 	}
 
+
 	public void likes(String email, Long imageId) {
+
 		User user = userRepository.findById(email)
 			.orElseThrow(() -> new IllegalStateException("회원정보를 확인해주세요."));
 
@@ -44,6 +52,37 @@ public class GalleryService {
 			.orElseThrow(() -> new IllegalStateException("존재하지 않는 이미지입니다."));
 
 		LikeId likeId = new LikeId(user.getEmail(), image.getId());
+
+		if(!isLikedByUser(email, imageId)) {
+			Like like = Like.builder()
+					.id(likeId)
+					.user(user)
+					.image(image)
+					.build();
+
+			likeRepository.save(like);
+		}
+  }
+
+	public Long notlikes(String email, Long imageId) {
+		LikeId likeId = new LikeId(email, imageId);
+		if(isLikedByUser(email, imageId)) {
+			likeRepository.deleteById(likeId);
+		}
+		return getLikeCount(imageId);
+	}
+
+	public Long getLikeCount(Long imageId) {
+		return likeRepository.countByImageId(imageId);
+	}
+
+	public boolean isLikedByUser(String email, Long imageId) {
+		User user = userRepository.findById(email)
+				.orElseThrow(() -> new IllegalStateException("회원정보를 확인해주세요."));
+
+		Image image = imageRepository.findById(imageId)
+				.orElseThrow(() -> new IllegalStateException("존재하지 않는 이미지입니다."));
+		return likeRepository.existsByUserAndImage(user, image);
 
 		Like like = Like.builder()
 			.id(likeId)
