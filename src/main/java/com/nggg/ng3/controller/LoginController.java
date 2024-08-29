@@ -30,7 +30,7 @@ public class LoginController {
     public void loginSuccess(OAuth2AuthenticationToken authentication, HttpServletResponse response) throws IOException {
         String jwtToken = generateJwtToken(authentication.getPrincipal());
         // 클라이언트의 메인 페이지로 리디렉션하며 JWT를 쿼리 파라미터로 전달
-        response.sendRedirect("http://localhost:3000/main?token=" + jwtToken);
+        response.sendRedirect("http://nggg.com:3000/main?token=" + jwtToken);
     }
 
 

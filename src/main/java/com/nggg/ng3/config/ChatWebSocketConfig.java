@@ -14,6 +14,6 @@ public class ChatWebSocketConfig implements WebSocketConfigurer {
 
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(chatHandler, "/chat").setAllowedOrigins("*");
+		registry.addHandler(chatHandler, "/chat").setAllowedOrigins("http://nggg.com:3000");
 	}
 }
