@@ -22,6 +22,8 @@ public class ResponseRoomCheckDTO {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class UserDTO {
+        private String email;
         private String nickname;
+        private String profile_image;
     }
 }

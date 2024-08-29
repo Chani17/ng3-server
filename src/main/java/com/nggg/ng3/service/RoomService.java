@@ -40,7 +40,9 @@ public class RoomService {
                     // 방에 포함된 사용자 정보 가져오기
                     List<RoomListDTO.UserDTO> users = inRoomUserRepository.findByRoomId(room.getId()).stream()
                             .map(inRoomUser -> RoomListDTO.UserDTO.builder()
+                                    .email(inRoomUser.getUser().getEmail())
                                     .nickname(inRoomUser.getUser().getNickname())
+                                    .profile_image(inRoomUser.getUser().getProfile_image())
                                     .build())
                             .collect(Collectors.toList());
 
@@ -57,14 +59,14 @@ public class RoomService {
 
     // 방 생성
     @Transactional
-    public Room saveRoom(CreateRoomDTO roomRequestDTO) {
+    public Room saveRoom(CreateRoomDTO createRoomDTO) {
 
-        String currentUserEmail = "savetest2@gmail.com"; // 추후 SecurityContext나 세션에서 이메일을 가져와야 함
+        String currentUserEmail = createRoomDTO.getUserId();
 
         // DTO에서 Room 엔티티로 변환
         Room room = Room.builder()
-                .title(roomRequestDTO.getTitle())
-                .password(roomRequestDTO.getPassword())
+                .title(createRoomDTO.getTitle())
+                .password(createRoomDTO.getPassword())
                 .state(GameState.READY) // 기본 상태를 설정
                 .build();
 
@@ -92,7 +94,7 @@ public class RoomService {
     // 방 입장 검증
     @Transactional
     public ResponseRoomCheckDTO enterRoomCheck(RequestRoomCheckDTO requestRoomCheckDTO) {
-        String currentUserEmail = "savetest2@gmail.com"; // 추후 SecurityContext나 세션에서 이메일을 가져와야 함
+        String currentUserEmail = requestRoomCheckDTO.getUserId();
 
         Room room = roomRepository.findById(requestRoomCheckDTO.getRoomId().intValue())
                 .orElseThrow(() -> new RoomNotFoundException("방을 찾을 수 없습니다."));
@@ -111,11 +113,15 @@ public class RoomService {
             }
         }
 
-        List<InRoomUser> inRoomUsers = inRoomUserRepository.findAllByRoom_Id(requestRoomCheckDTO.getRoomId());
-        return new ResponseRoomCheckDTO(room.getId(), room.getTitle(),
-                inRoomUsers.stream()
-                        .map(user -> new RoomListDTO.UserDTO(user.getUser().getNickname()))
-                        .collect(Collectors.toList()), null); // 메시지 없이 반환
+        List<RoomListDTO.UserDTO> userDTOList = inRoomUserRepository.findAllByRoom_Id(requestRoomCheckDTO.getRoomId()).stream()
+                .map(user -> RoomListDTO.UserDTO.builder()
+                        .email(user.getUser().getEmail())
+                        .nickname(user.getUser().getNickname())
+                        .profile_image(user.getUser().getProfile_image())
+                        .build())
+                .collect(Collectors.toList());
+
+        return new ResponseRoomCheckDTO(room.getId(), room.getTitle(), userDTOList, null); // 메시지 없이 반환
     }
 
     private void validateRoom(Room room, RequestRoomCheckDTO requestRoomCheckDTO) {
