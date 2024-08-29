@@ -26,7 +26,7 @@ public class FollowService {
 
     // 팔로우 목록 가져오기
     public List<User> getFollowList(String userEmail) {
-        User user = userRepository.findById(userEmail).orElseThrow(()->new RuntimeException("유저 정보를 찾을 수 없습니다."));
+        User user = userRepository.findById(userEmail).orElseThrow(() -> new RuntimeException("유저 정보를 찾을 수 없습니다."));
         return followRepository.findFollowingByUser(user).stream().map(Follow::getFollowing).toList();
     }
 
