@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.crypto.SecretKey;
 import java.io.IOException;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/login")
@@ -34,9 +36,16 @@ public class LoginController {
 
     private String generateJwtToken(OAuth2User oAuth2User) {
         String userId = oAuth2User.getAttribute("sub");  // Google의 사용자 ID
+        String email = oAuth2User.getAttribute("email");
+        // 현재 시간으로부터 100일 후를 만료 시간으로 설정
+        Date now = new Date();
+        Date expirationTime = new Date(now.getTime() + TimeUnit.DAYS.toMillis(100));
 
         return Jwts.builder()
-                .setSubject(userId)
+                .setSubject(userId)  // 사용자 ID를 sub 클레임에 설정
+                .claim("email", email)  // 이메일을 별도의 클레임으로 설정
+                .setIssuedAt(now)  // 토큰 발급 시간
+                .setExpiration(expirationTime)// 토큰 만료 시간
                 .signWith(secretKey)
                 .compact();
     }
