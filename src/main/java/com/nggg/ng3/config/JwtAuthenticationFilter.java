@@ -7,6 +7,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -22,8 +23,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final SecretKey secretKey;
 
-    public JwtAuthenticationFilter() {
-        this.secretKey = Keys.hmacShaKeyFor("YourSecretKeyHereYourSecretKeyHere".getBytes());
+    public JwtAuthenticationFilter(@Value("${jwt.secretKey}") String secretKeyString) {
+        this.secretKey = Keys.hmacShaKeyFor(secretKeyString.getBytes());
     }
 
     @Override
