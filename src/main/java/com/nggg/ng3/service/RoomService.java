@@ -40,7 +40,9 @@ public class RoomService {
                     // 방에 포함된 사용자 정보 가져오기
                     List<RoomListDTO.UserDTO> users = inRoomUserRepository.findByRoomId(room.getId()).stream()
                             .map(inRoomUser -> RoomListDTO.UserDTO.builder()
+                                    .email(inRoomUser.getUser().getEmail())
                                     .nickname(inRoomUser.getUser().getNickname())
+                                    .profile_image(inRoomUser.getUser().getProfile_image())
                                     .build())
                             .collect(Collectors.toList());
 
@@ -111,11 +113,15 @@ public class RoomService {
             }
         }
 
-        List<InRoomUser> inRoomUsers = inRoomUserRepository.findAllByRoom_Id(requestRoomCheckDTO.getRoomId());
-        return new ResponseRoomCheckDTO(room.getId(), room.getTitle(),
-                inRoomUsers.stream()
-                        .map(user -> new RoomListDTO.UserDTO(user.getUser().getNickname()))
-                        .collect(Collectors.toList()), null); // 메시지 없이 반환
+        List<RoomListDTO.UserDTO> userDTOList = inRoomUserRepository.findAllByRoom_Id(requestRoomCheckDTO.getRoomId()).stream()
+                .map(user -> RoomListDTO.UserDTO.builder()
+                        .email(user.getUser().getEmail())
+                        .nickname(user.getUser().getNickname())
+                        .profile_image(user.getUser().getProfile_image())
+                        .build())
+                .collect(Collectors.toList());
+
+        return new ResponseRoomCheckDTO(room.getId(), room.getTitle(), userDTOList, null); // 메시지 없이 반환
     }
 
     private void validateRoom(Room room, RequestRoomCheckDTO requestRoomCheckDTO) {
