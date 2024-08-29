@@ -21,7 +21,6 @@ public class UserService {
         if(user.isEmpty()){
             User newUser = User.builder()
                     .email(loginUserId)
-                    .name("이름")
                     .nickname("닉네임")
                     .build();
             userRepository.save(newUser);
