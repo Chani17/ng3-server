@@ -25,7 +25,7 @@ public class User extends BaseEntity {
     @Column(name = "ID", nullable = false)
     private String email;
 
-    private String profile_image;
+    private String profile_image = "https://storage.googleapis.com/nggg/profile/profile_18.png";
 
     @Column(nullable = false)
     private String nickname;

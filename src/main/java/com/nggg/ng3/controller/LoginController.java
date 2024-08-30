@@ -1,5 +1,7 @@
 package com.nggg.ng3.controller;
 
+import com.nggg.ng3.service.UserService;
+import com.nggg.ng3.service.WearingService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,13 +23,36 @@ public class LoginController {
 
     private final SecretKey secretKey;
 
+    private final UserService userService;
+
+    private final WearingService wearingService;
+
     // 생성자에서 secretKey 초기화
-    public LoginController(@Value("${jwt.secretKey}") String secretKeyString) {
+    public LoginController(@Value("${jwt.secretKey}") String secretKeyString, UserService userService, WearingService wearingService) {
         this.secretKey = Keys.hmacShaKeyFor(secretKeyString.getBytes());
+        this.userService = userService;
+        this.wearingService = wearingService;
     }
 
     @GetMapping("/success")
     public void loginSuccess(OAuth2AuthenticationToken authentication, HttpServletResponse response) throws IOException {
+        OAuth2User oAuth2User = authentication.getPrincipal();
+        String userId = oAuth2User.getAttribute("email");
+
+        boolean userExists = userService.userExists(userId);
+
+        // 사용자 정보가 없으면 새로운 사용자 추가
+        if (!userExists) {
+            userService.addUser(userId);
+
+            // 기본적으로 사용자가 착용하는 컴포넌트를 저장 (최초 로그인 시)
+            wearingService.saveWearing(userId, 1L);
+            wearingService.saveWearing(userId, 15L);
+            wearingService.saveWearing(userId, 21L);
+            wearingService.saveWearing(userId, 28L);
+            wearingService.saveWearing(userId, 32L);
+        }
+
         String jwtToken = generateJwtToken(authentication.getPrincipal());
         // 클라이언트의 메인 페이지로 리디렉션하며 JWT를 쿼리 파라미터로 전달
         response.sendRedirect("http://localhost:3000/main?token=" + jwtToken);
