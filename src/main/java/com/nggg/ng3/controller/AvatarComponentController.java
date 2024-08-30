@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000") // 이 컨트롤러에 대해 CORS 허용
+@CrossOrigin(origins = "http://nggg.com:3000") // 이 컨트롤러에 대해 CORS 허용
 @RestController
 @RequestMapping("/api/avatar-components")
 public class AvatarComponentController {

@@ -19,7 +19,7 @@ public class WearingController {
 
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://nggg.com:3000")
     @GetMapping("/user/{userId}")
     public List<WearingDTO> getWearingComponentsByUserId(@PathVariable String userId) {//wearing컴포넌트 가져오는 메서드
         return wearingService.getWearingComponentsByUserId(userId);

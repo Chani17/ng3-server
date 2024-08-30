@@ -21,7 +21,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000") // 이 컨트롤러에 대해 CORS 허용
+@CrossOrigin(origins = "http://nggg.com:3000") // 이 컨트롤러에 대해 CORS 허용
 public class RoomController {
 
     private final RoomService roomService;
