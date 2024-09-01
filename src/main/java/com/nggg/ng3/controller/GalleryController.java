@@ -15,6 +15,11 @@ import com.nggg.ng3.service.GalleryService;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * [김찬희] : 데이터베이스에 저장된 이미지들을 불러오는 endpoint 작성
+ * [한수민] : 좋아요 관련 endpoint 작성
+ */
+
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
@@ -22,9 +27,6 @@ public class GalleryController {
 
 	private final GalleryService galleryService;
 
-	/**
-	 * [김찬희] : 데이터베이스에 저장된 이미지들을 불러오는 endpoint
-	 */
 	@GetMapping("/{userId}/images")
 	public List<GalleryDTO> getImages(@PathVariable("userId") String userId) {
 		return galleryService.getImages(userId);

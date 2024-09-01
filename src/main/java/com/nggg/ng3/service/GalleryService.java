@@ -17,6 +17,11 @@ import com.nggg.ng3.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * [김찬희] : 데이터베이스에 저장된 이미지 가져오는 로직 구현
+ * [한수민] : 좋아요 관련 기능 구현
+ */
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -26,9 +31,6 @@ public class GalleryService {
 	private final UserRepository userRepository;
 	private final LikeRepository likeRepository;
 
-	/**
-	 * [김찬희] : 데이터베이스에 저장된 이미지 가져오는 로직 구현
-	 */
 	@Transactional(readOnly = true)
 	public List<GalleryDTO> getImages(String email) {
 		User user = userRepository.findById(email)
