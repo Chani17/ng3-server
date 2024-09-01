@@ -26,18 +26,15 @@ public class GalleryService {
 	private final UserRepository userRepository;
 	private final LikeRepository likeRepository;
 
+	/**
+	 * [김찬희] : 데이터베이스에 저장된 이미지 가져오는 로직 구현
+	 */
 	@Transactional(readOnly = true)
 	public List<GalleryDTO> getImages(String email) {
 		User user = userRepository.findById(email)
 				.orElseThrow(() -> new IllegalStateException("회원정보를 확인해주세요."));
 
 		List<GalleryDTO> imageList = imageRepository.findImageLikesByUserId(user.getEmail());
-
-		for(GalleryDTO dto : imageList) {
-			System.out.println("title = " + dto.getTitle());
-			System.out.println("likeCount = " + dto.getLikeCount());
-			System.out.println("url = " + dto.getUrl());
-		}
 
 		return imageList;
 	}

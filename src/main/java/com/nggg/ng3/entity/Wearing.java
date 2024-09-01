@@ -12,6 +12,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * [김찬희] : 아바타의 현재 착장에 대한 Entity 작성
+ */
 @Getter
 @Builder(toBuilder = true)
 @NoArgsConstructor

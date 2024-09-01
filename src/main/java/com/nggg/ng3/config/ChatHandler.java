@@ -17,6 +17,9 @@ import com.nggg.ng3.dto.Chat;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * [김찬희] : websocket을 통해 채팅 메시지를 처리하고, 특정 방의 사용자들에게 메시지를 전송하는 기능 구현
+ */
 @Component
 @RequiredArgsConstructor
 public class ChatHandler extends TextWebSocketHandler {

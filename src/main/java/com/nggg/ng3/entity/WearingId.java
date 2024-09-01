@@ -9,6 +9,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * [김찬희] : 아바타의 현재 착장과 관련된 복합키 클래스
+ */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

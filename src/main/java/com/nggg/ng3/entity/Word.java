@@ -14,6 +14,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * [김찬희] : 게임의 정답 관련 Enttiy 작성
+ */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

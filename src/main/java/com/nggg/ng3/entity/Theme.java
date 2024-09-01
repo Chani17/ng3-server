@@ -11,6 +11,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * [김찬희] : 게임 정답 테마 Entity
+ */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

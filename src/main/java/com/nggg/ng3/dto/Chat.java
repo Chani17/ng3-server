@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+/**
+ * [김찬희] : 채팅 관련 DTO
+ */
 @Getter
 @Setter
 @AllArgsConstructor

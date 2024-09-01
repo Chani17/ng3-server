@@ -12,6 +12,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+/**
+ * [김찬희] : 팔로우 관련 Entity 작성
+ */
 @Getter
 @SuperBuilder(toBuilder = true)
 @NoArgsConstructor

@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * [김찬희] : 사용자 밤 참여를 나타내는 복합 키 정의
+ */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

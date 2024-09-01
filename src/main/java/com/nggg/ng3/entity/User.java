@@ -13,6 +13,9 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+/**
+ * [김찬희] : 사용자 관련 Entity 작성
+ */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

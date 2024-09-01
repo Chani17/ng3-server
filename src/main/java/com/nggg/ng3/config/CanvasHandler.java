@@ -10,6 +10,9 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+/**
+ * [김찬희] : 게임 방에서 그림을 그릴 수 있는 캔버스를 웹소켓을 이용하여 구현
+ */
 @Component
 public class CanvasHandler extends TextWebSocketHandler {
 

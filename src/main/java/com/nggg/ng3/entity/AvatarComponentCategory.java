@@ -11,6 +11,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * [김찬희] : 아바타 구성 요소들의 카테고리 Entity 작성
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)

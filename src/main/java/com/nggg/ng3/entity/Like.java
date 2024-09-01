@@ -12,6 +12,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+/**
+ * [김찬희] : 그림의 좋아요를 관리하는 Entity 작성
+ */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

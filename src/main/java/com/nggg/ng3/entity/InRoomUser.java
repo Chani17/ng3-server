@@ -14,6 +14,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * [김찬희] : 사용자의 방 참여 정보를 관리하는 Entity 작성
+ */
 @Getter
 @Builder(toBuilder = true)
 @NoArgsConstructor

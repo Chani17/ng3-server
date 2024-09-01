@@ -11,6 +11,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+/**
+ * [김찬희] : 생성 및 수정 일시를 자동으로 관리하는 Entity 작성
+ */
 @Getter
 @MappedSuperclass
 @NoArgsConstructor

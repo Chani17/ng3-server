@@ -7,6 +7,9 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * [김찬희] : 캔버스 관련 websocket 핸들러를 등록하고, 특정 도메인에서의 연결을 허용하기 위한 websocket path 등록
+ */
 @Configuration
 @EnableWebSocket
 @RequiredArgsConstructor

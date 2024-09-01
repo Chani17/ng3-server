@@ -15,6 +15,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+/**
+ * [김찬희] : 게임 방 Entity 작성
+ */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

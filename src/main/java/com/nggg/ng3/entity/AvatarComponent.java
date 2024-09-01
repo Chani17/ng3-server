@@ -13,6 +13,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * [김찬희] : 아바타 구성 요소 Entity 작성
+ */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * [김찬희] : 좋아요 관계를 나타내는 복합키 정의
+ */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

@@ -13,7 +13,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-
+/**
+ * [김찬희] : 이미지를 저장하는 Entity 작성
+ */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

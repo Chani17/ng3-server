@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * [김찬희] : 팔로우 관계를 나타내는 복합 키 정의
+ */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

@@ -3,6 +3,9 @@ package com.nggg.ng3.model;
 import lombok.Builder;
 import lombok.Getter;
 
+/**
+ * [김찬희] : 이미지의 ID, 제목, URL, 좋아요 수를 담는 DTO 클래스
+ */
 @Getter
 public class GalleryDTO {
 
