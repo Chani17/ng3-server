@@ -22,7 +22,7 @@ public class SecurityConfig {
     public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
-
+    /**[박혁진] Spring Security의 필터 체인을 구성하는 메서드*/
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -42,6 +42,7 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /**[박혁진] CORS설정. http://nggg.com:3000에서 오는 요청만 허용한다.*/
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();

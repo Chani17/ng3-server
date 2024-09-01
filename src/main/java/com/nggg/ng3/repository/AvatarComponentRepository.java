@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface AvatarComponentRepository extends JpaRepository<AvatarComponent, Long> {
-    // 모든 AvatarComponent의 id, imageUrl, avatarComponentCategory를 가져오는 메소드
+    /**[박혁진]: 모든 AvatarComponent의 id, imageUrl, avatarComponentCategory를 가져오는 메소드*/
     List<AvatarComponent> findAll();
 }

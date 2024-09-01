@@ -10,9 +10,9 @@ import java.util.List;
 @Repository
 public interface WearingRepository extends JpaRepository<Wearing, WearingId> {
 
-    // User 엔티티의 email을 기준으로 Wearing 엔티티를 찾는 쿼리
+    /** [박혁진] : User 엔티티의 email을 기준으로 Wearing 엔티티를 찾는 쿼리*/
     List<Wearing> findByUserId_Email(String email);
 
-    // User 엔티티의 email 필드를 기준으로 삭제 쿼리 작성
+    /** [박혁진] : User 엔티티의 email 필드를 기준으로 삭제 쿼리 작성*/
     void deleteByUserId_Email(String email);
 }

@@ -18,6 +18,7 @@ import javax.crypto.SecretKey;
 import java.io.IOException;
 import java.util.Collections;
 
+/**[박혁진]  , HTTP 요청에서 JWT 토큰을 추출하고 검증하여, 유효한 토큰이 있는 경우 해당 사용자를 인증*/
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
@@ -33,7 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         // /api 경로에 대해서만 필터를 적용
         return !path.startsWith("/api");
     }
-
+    /**[박혁진] 요청이 들어올 때 JWT 토큰을 추출하고, 이를 검증하여 사용자를 인증*/
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {

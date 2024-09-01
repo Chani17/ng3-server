@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+
+
 @RestController
 @RequestMapping("/login")
 public class LoginController {
@@ -34,6 +36,7 @@ public class LoginController {
         this.wearingService = wearingService;
     }
 
+    /**[박혁진]: 로그인이 성공했을 시 사용자 정보와 아바타 컴포넌트를 DB에 저장하고 토큰을 반환하는 loginSuccess 메서드*/
     @GetMapping("/success")
     public void loginSuccess(OAuth2AuthenticationToken authentication, HttpServletResponse response) throws IOException {
         OAuth2User oAuth2User = authentication.getPrincipal();
@@ -58,7 +61,7 @@ public class LoginController {
         response.sendRedirect("http://nggg.com:3000/main?token=" + jwtToken);
     }
 
-
+    /**[박혁진] : Oauth2를 통해 발급되는 토큰에 대한 세부 설정*/
     private String generateJwtToken(OAuth2User oAuth2User) {
         String userId = oAuth2User.getAttribute("sub");  // Google의 사용자 ID
         String email = oAuth2User.getAttribute("email");

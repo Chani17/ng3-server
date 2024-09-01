@@ -28,7 +28,7 @@ public class WearingService {
         this.userRepository = userRepository;
         this.avatarComponentRepository = avatarComponentRepository;
     }
-
+    /**[박혁진] : userId와로 현재 착용한하고 있는 옷을 불러오는 메서드*/
     public List<WearingDTO> getWearingComponentsByUserId(String userId) {
         List<Wearing> wearings = wearingRepository.findByUserId_Email(userId);
 
@@ -39,7 +39,7 @@ public class WearingService {
         )).collect(Collectors.toList());
     }
 
-    //userId와 Component 번호로 db에 값 넣기
+    /**[박혁진] : userId와 Component 번호로 Wearing에 현재 착용한 옷을 저장하는 메서드*/
     @Transactional
     public Wearing saveWearing(String userId, Long avatarComponentId) {
         // User와 AvatarComponent를 먼저 조회합니다.
@@ -62,6 +62,7 @@ public class WearingService {
         return wearingRepository.save(wearing);
     }
 
+    /**[박혁진] : userId로 현재 착용중인 컴포넌트를 제거하는 메서드*/
     @Transactional
     public void deleteWearingByUserId(String userId) {
         wearingRepository.deleteByUserId_Email(userId);

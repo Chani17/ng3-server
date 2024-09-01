@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**[박혁진] : db에 존재하는 모든 아바타 컴포넌트를 불러오는 서비스*/
 @Service
 public class AvatarComponentService {
 

@@ -20,6 +20,7 @@ public class AvatarComponentController {
         this.avatarComponentService = avatarComponentService;
     }
 
+    /**[박혁진]: 모든 아바타 컴포넌트들을 반환하는 메서드*/
     @GetMapping
     public List<AvatarComponentDTO> getAllAvatarComponents() {
         return avatarComponentService.getAllAvatarComponents();
