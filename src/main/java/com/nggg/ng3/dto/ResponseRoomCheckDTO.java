@@ -1,3 +1,5 @@
+// 이하린 : 방 입장 검증 후 응답 데이터 전송 객체
+
 package com.nggg.ng3.dto;
 
 import lombok.AllArgsConstructor;

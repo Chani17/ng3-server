@@ -1,3 +1,5 @@
+// 이하린 : 전역에서 사용하는 Exception Handler
+
 package com.nggg.ng3.exception;
 
 import org.springframework.http.HttpStatus;

@@ -1,3 +1,5 @@
+// 이하린 : 게임방 생성, 방 목록 출력, 방 입장 검증 컨트롤러
+
 package com.nggg.ng3.controller;
 
 import com.nggg.ng3.dto.CreateRoomDTO;
