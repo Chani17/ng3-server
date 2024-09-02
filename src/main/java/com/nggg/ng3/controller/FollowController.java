@@ -1,3 +1,4 @@
+// 한수민: 사용자 검색, 팔로우 리스트 가져오기, 팔로우, 언팔로우
 package com.nggg.ng3.controller;
 
 import org.slf4j.Logger;

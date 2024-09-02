@@ -1,3 +1,4 @@
+// 한수민: 팔로우 관련 DTO
 package com.nggg.ng3.dto;
 
 import lombok.AllArgsConstructor;

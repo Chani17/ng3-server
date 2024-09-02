@@ -1,3 +1,4 @@
+//한수민: 사용자 검색, 팔로우 목록 가져오기, 팔로우, 언팔로우, 받은 좋아요 총 개수
 package com.nggg.ng3.service;
 
 import com.nggg.ng3.entity.Follow;

@@ -13,7 +13,8 @@ public interface LikeRepository extends JpaRepository<Like, LikeId> {
 	boolean existsByUserAndImage(User user, Image image);
 	Long countByImageId(Long imageId);
 
-  @Query("SELECT COUNT(1) FROM Like l WHERE l.user.email = :userEmail")
-  Long countLikeByUserEmail(@Param("userEmail") String userEmail);
+    // 한수민: 유저 엔티티의 이메일 필드를 기준으로 받은 좋아요 총 개수 계산
+    @Query("SELECT COUNT(1) FROM Like l WHERE l.user.email = :userEmail")
+    Long countLikeByUserEmail(@Param("userEmail") String userEmail);
 
 }
