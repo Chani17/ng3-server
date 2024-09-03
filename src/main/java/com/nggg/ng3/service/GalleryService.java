@@ -1,6 +1,5 @@
 package com.nggg.ng3.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import com.nggg.ng3.entity.Image;
 import com.nggg.ng3.entity.Like;
 import com.nggg.ng3.entity.LikeId;
 import com.nggg.ng3.entity.User;
-import com.nggg.ng3.model.GalleryDTO;
+import com.nggg.ng3.dto.GalleryDTO;
 import com.nggg.ng3.repository.ImageRepository;
 import com.nggg.ng3.repository.LikeRepository;
 import com.nggg.ng3.repository.UserRepository;

@@ -1,4 +1,4 @@
-package com.nggg.ng3.model;
+package com.nggg.ng3.dto;
 
 import lombok.Builder;
 import lombok.Getter;

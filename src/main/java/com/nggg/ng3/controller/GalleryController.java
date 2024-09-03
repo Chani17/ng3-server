@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nggg.ng3.model.GalleryDTO;
+import com.nggg.ng3.dto.GalleryDTO;
 import com.nggg.ng3.service.GalleryService;
 
 import lombok.RequiredArgsConstructor;

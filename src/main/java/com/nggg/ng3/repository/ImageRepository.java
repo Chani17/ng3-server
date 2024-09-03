@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.nggg.ng3.entity.Image;
-import com.nggg.ng3.model.GalleryDTO;
+import com.nggg.ng3.dto.GalleryDTO;
 
 
 public interface ImageRepository extends JpaRepository<Image, Long> {
